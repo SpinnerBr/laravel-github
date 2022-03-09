@@ -116,3 +116,4 @@ Route::get('/logout', function(){
 
 
 Route::get('produtos','ProdutoController@index')->name('produtos.index');
+Route::get('catalogo','CatalogoController@index')->name('catalogo.index');
