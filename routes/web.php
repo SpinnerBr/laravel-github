@@ -110,9 +110,9 @@ Route::group([
 });
 // Módulo 2 - Controller
 
-Route::get('/login', function(){
+Route::get('/logout', function(){
     return "Tela de login";
-})->name('login');
+})->name('logout');
 
 
 Route::get('produtos','ProdutoController@index')->name('produtos.index');
