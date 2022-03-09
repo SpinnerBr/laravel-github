@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Route::view('/view','welcome'); Forma simplificada da rota abaixo (Só utilizar em views simples)
 //
+
 Route::get('/', function () {
     return view('welcome');
 }); // Rota padrão
@@ -51,12 +52,11 @@ Route::get('/produto/{idProduto?}', function($idProduto=''){
 //Rota direcionável
 
 
-/*Route::get('/redirect1', function(){
+Route::get('/redirect1', function(){
     return redirect('redirect2');
 });
-Essa rota de cima é uma forma dessimplificada para redirecionar as páginas,
-já a de rota debaixo, é mais prática e simples
-*/
+//A rota abaixo é uma forma simplificada das funções da rota acima
+
 Route::redirect('redirect1','redirect2');
 Route::get('/redirect2', function(){
     return 'redirect 02';
@@ -75,22 +75,44 @@ Route::get('/nome-url', function(){
 
 //Grupo de rotas
 
-/* Dessa forma precisamos colocar diversas vezes o "middleware('auth')", e quando formos alterar
+ /*Dessa forma precisamos colocar diversas vezes o "middleware('auth')", e quando formos alterar
 precisaremos fazer uma por uma.
 Middleware filtro de acesso do sistema */
+
+/*
+Route::middleware([])->group(function(){
+
+    Route::prefix('admin')->group(function(){ // Quando trocar admin por outra coisa, ele vai subsituir a rota
+
+        Route::namespace('Admin')->group(function(){
+            Route::get('/dashboard','ControllerTest@teste')->name('dashboard');
+            Route::get('/financeiro', 'ControllerTest@teste')->name('financeiro');
+            Route::get('/produtos', 'ControllerTest@teste')->name('produtos');
+            Route::get('/', function(){
+                return redirect()->route('admin.dashboard');
+            })->name('home');
+        });
+    }); O código abaixo resume o codigo comentado aqui
+});*/
+
+
+Route::group([
+    'middleware'=>[],
+    'prefix'=>'admin',
+    'namespace'=>'Admin'
+], function(){
+    Route::get('/dashboard','ControllerTest@teste')->name('dashboard');
+    Route::get('/financeiro', 'ControllerTest@teste')->name('financeiro');
+    Route::get('/produtos', 'ControllerTest@teste')->name('produtos');
+    Route::get('/', function(){
+        return redirect()->route('admin.dashboard');
+    })->name('home');
+});
+// Módulo 2 - Controller
+
 Route::get('/login', function(){
     return "Tela de login";
 })->name('login');
-Route::middleware([])->group(function(){
-    Route::prefix('admin')->group(function(){ // Quando trocar admin por outra coisa, ele vai subsituir a rota
-        Route::get('/dashboard', function(){
-            return "Home Admin";
-        });
-        Route::get('/financeiro', function(){
-            return "Admin Financeiro";
-        });
-        Route::get('/produtos', function(){
-            return "Admin Produtos";
-        });
-    });
-});
+
+
+Route::get('produtos','ProdutoController@index')->name('produtos.index');
