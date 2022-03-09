@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class ProdutoController extends Controller
 {
     public function index(){
-        return 'listagem de produtos';
+        return 'a vida é uma maravilha';
     }
 }
