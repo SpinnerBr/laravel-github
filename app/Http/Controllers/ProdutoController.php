@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class ProdutoController extends Controller
 {
     public function index(){
-        return 'a vida é uma maravilha';
+        $produtos=['Laranja','Tomate','Cenoura',"Pessego"];
+        return $produtos;
     }
 }

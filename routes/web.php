@@ -114,6 +114,71 @@ Route::get('/logout', function(){
     return "Tela de login";
 })->name('logout');
 
+/*Route::get('operadoreslogicos',function(){
+    $var1 = 40;
+    $resultado='';
+    if($var1>30){
+        $resultado ="Valor maior que";
+    }
+elseif($var1==0){
+    $resultado ="valor zerado;";
+}
+elseif($var1<0){
+    $resultado = "Valor menor que ";
+}
+
+echo $resultado;
+*/
+/*
+echo "Digite um número";
+$numero=2;
+$multiplicador='';
+for($multiplicador=0; $multiplicador <= 10 ; $multiplicador++){
+    echo "<br>";
+    echo "Número {$numero} multiplicado por {$multiplicador} resultando em ".($numero * $multiplicador).".<br>";
+}
+
+$n=5;
+$i='';
+for($i=0; $i == 0 ; $i++)
+      {
+echo "<br>";
+echo "Número {$n} fatorado pelo número {$i} resultou em ".($n * $i).".<br>";
+}
+$num = 8;
+
+if($num > 0){
+    $valor = $num;
+    for($i = ($valor - 1); $i > 0; $i--){
+        $valor = $valor * $i;
+    }
+}else{
+    $valor = 0;
+}
+
+echo "!{$num} = {$valor}<br>";
+
+$notas = [5, 10, 4];
+$smTotal = 0;
+
+for($i = 0; $i < count($notas); $i++){
+    $smTotal += $notas[$i];
+}
+
+$resultado = $smTotal / count($notas);
+
+if($resultado >= 6){
+    echo "Aprovado, média final {$resultado}<br>";
+}else{
+    echo "Reprovado, média final {$resultado}<br>";
+}
+
+
+})->name('estudo.index');
+*/
 
 Route::get('produtos','ProdutoController@index')->name('produtos.index');
 Route::get('catalogo','CatalogoController@index')->name('catalogo.index');
+
+
+
