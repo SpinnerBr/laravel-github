@@ -10,4 +10,8 @@ class ProdutoController extends Controller
         $produtos=['Laranja','Tomate','Cenoura',"Pessego"];
         return $produtos;
     }
+    public function show($idProduto){
+
+        return "O ID do produto é: {$idProduto}";
+    }
 }

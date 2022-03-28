@@ -180,5 +180,5 @@ if($resultado >= 6){
 Route::get('produtos','ProdutoController@index')->name('produtos.index');
 Route::get('catalogo','CatalogoController@index')->name('catalogo.index');
 
-
+Route::get('produtos/{id}','ProdutoController@show')->name('produtos.show');
 
